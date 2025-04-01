@@ -140,7 +140,7 @@ def predict(raw_folder_path, output_path, gvp_volcano_name, cropped_lrx_dir=None
     df['Maximum (K)'] = ""
     df['Mean (Background Temperature) (K)'] = ""
     df['Standard Deviation'] = ""
-    df['Max Temp Above Backround (K)'] = ""
+    df['Max Temp Above Background (K)'] = ""
     i = 0
     for lrx_image_path in os.listdir(lrx_folder_path):
         print(F"Inferring: {lrx_image_path}")
