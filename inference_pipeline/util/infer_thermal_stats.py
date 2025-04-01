@@ -23,7 +23,7 @@ def infer_thermal_stats(lrx_filename,original_path,predicted,volcano):
     image_a = lrx_filename
     image_b = original_path
     date = formatDate_classify(original_path,volcano)
-    new_row = {'Date': date, 'Volcano': volcano,'Volcanic Thermal Anomaly (Y/N)': 'N', 'Maximum (K)': '', 'Mean (Background Temperature) (K)': '','Standard Deviation': '', 'Max Temp Above Backround (K)' : ''}
+    new_row = {'Date': date, 'Volcano': volcano,'Volcanic Thermal Anomaly (Y/N)': 'N', 'Maximum (K)': '', 'Mean (Background Temperature) (K)': '','Standard Deviation': '', 'Max Temp Above Background (K)' : ''}
     if(predicted == 1):
         try:
             with rasterio.open(image_b) as src:
@@ -74,7 +74,7 @@ def infer_thermal_stats(lrx_filename,original_path,predicted,volcano):
 
                     value_at_mapped_coord = np.max(patch)
                     bg_arr = patch[patch != np.max(patch)]
-                    new_row = {'Date': date, 'Volcano': volcano,'Volcanic Thermal Anomaly (Y/N)': 'Y', 'Maximum (K)': value_at_mapped_coord, 'Mean (Background Temperature) (K)': np.mean(bg_arr),'Standard Deviation':np.std(patch), 'Max Temp Above Backround (K)' : np.max(patch) - np.min(patch)}
+                    new_row = {'Date': date, 'Volcano': volcano,'Volcanic Thermal Anomaly (Y/N)': 'Y', 'Maximum (K)': value_at_mapped_coord, 'Mean (Background Temperature) (K)': np.mean(bg_arr),'Standard Deviation':np.std(patch), 'Max Temp Above Background (K)' : np.max(patch) - np.min(patch)}
                     return new_row
         except Exception as e:
             print(f"exception : {e}")
